@@ -19,7 +19,6 @@ contract FundFundMe is Script {
             "FundMe",
             block.chainid
         );
-        require(mostRecentlyDeployed != address(0), "No deployment found for FundMe");
         vm.startBroadcast();
         fundFundMe(mostRecentlyDeployed);
         vm.stopBroadcast();
@@ -28,8 +27,9 @@ contract FundFundMe is Script {
 
 contract WithdrawFundMe is Script {
     function withdrawFundMe(address mostRecentlyDeployed) public {
+        vm.startBroadcast();
         FundMe(payable(mostRecentlyDeployed)).withdraw();
-        console.log("Withdrew funds from FundMe");
+        vm.stopBroadcast();
     }
 
     function run() external {

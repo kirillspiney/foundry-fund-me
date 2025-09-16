@@ -27,8 +27,7 @@ contract InteractionsTest is Test {
         fundFundMe.fundFundMe(address(fundMe));
 
         WithdrawFundMe withdrawFundMe = new WithdrawFundMe();
-        vm.prank(fundMe.getOwner());
-        fundMe.withdraw();
+        withdrawFundMe.withdrawFundMe(address(fundMe));
 
         assert(address(fundMe).balance == 0);
     }

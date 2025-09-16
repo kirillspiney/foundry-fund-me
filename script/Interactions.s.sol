@@ -19,6 +19,7 @@ contract FundFundMe is Script {
             "FundMe",
             block.chainid
         );
+        require(mostRecentlyDeployed != address(0), "No deployment found for FundMe");
         vm.startBroadcast();
         fundFundMe(mostRecentlyDeployed);
         vm.stopBroadcast();
